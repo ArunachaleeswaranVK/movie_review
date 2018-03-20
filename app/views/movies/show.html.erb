@@ -1,0 +1,60 @@
+<p id="notice"><%= notice %></p>
+
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-4">
+        <%= image_tag @movie.image.url(:medium) %>
+        <p><strong>The Average review of this movie is :<%= @avg_review %></strong></p>
+          <en><%= " #{@reviews.length} reviews " %></en>
+        <div class="table-responsive">
+          <table class="table">
+            <tbody>
+              <tr>
+                <td><strong>Title:</strong></td>
+                <td><%= @movie.title %></td>
+              </tr>
+              <tr>
+                <td><strong>Descrription:</strong></td>
+                <td><%= @movie.description %></td>
+              </tr>
+              <tr>
+                <td><strong>Length:</strong></td>
+                <td><%= @movie.movie_lenght %></td>
+              </tr>
+              <tr>
+                <td><strong>Director:</strong></td>
+                <td><%= @movie.director %></td>
+              </tr>
+              <tr>
+                <td><strong>Rating:</strong></td>
+                <td><%= @movie.rating %></td>
+              </tr>
+            </tbody>
+          </table>
+          <%= link_to "Write a Review" , new_movie_review_path(@movie) %>
+        </div>  
+      </div>
+     <div class="col-md-7 col-md-offset-1">
+       <% if @reviews.blank? %>
+         <h3>No Reviews yet ! Would you like to add a review first ?</h3>
+         <%= link_to "Add a First Review" , new_movie_review_path(@movie) , class: "btn btn-danger" %>
+       <% else %>
+         <h2 align="center"> The Reviews</h2>
+         <% @reviews.each do |review| %>
+           <div class="well well-lg review">
+             <p><strong><%= review.rating %>Star</strong></p>
+             <p><%= review.comment %></p>
+             <p><strong><%= review.user.email %></strong></p>
+           </div>
+         <% end %>
+       <% end %>
+     </div>
+    </div>
+  </div>
+</div>
+
+<div class="row" align="center">
+  <%= link_to 'Edit', edit_movie_path(@movie) %> |
+  <%= link_to 'Back', movies_path %>
+</div>

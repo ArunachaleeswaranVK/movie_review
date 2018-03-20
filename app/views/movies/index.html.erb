@@ -1,0 +1,31 @@
+<% if !user_signed_in? %>
+<div class="jumbotron">
+  <h2>The Movie Review App</h2>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim, 
+  consequatur reprehenderit alias eius iure nemo tempore molestiae earum.
+  Nemo, ipsam atque accusantium obcaecati repellendus impedi
+  t at ad incidunt quo officia.
+  </p>
+  <p align="center"><%= link_to "Sign in to review a movie" ,  new_user_session_path , class: "btn btn-primary btn-lg" %></p>
+</div>
+<% end %>
+
+
+<div class="row">
+<% @movies.each do |movie| %>
+  <div class="col-sm-6 col-md-3">
+    <div class="thumbnail">
+      <%= link_to (image_tag movie.image.url(:medium), class: "image") , movie %>
+    </div>
+  </div>
+<% end %>  
+</div>
+
+<form>
+  <h1>Guest Login</h1>
+  <input type="text"
+</form>
+
+
+
+
